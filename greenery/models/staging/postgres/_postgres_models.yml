@@ -6,6 +6,8 @@ models:
     columns:
       - name: address_id
         description: Unique identifier for each address
+        tests:
+          - not_null
       - name: address
         description: Street address portion of the address
       - name: zipcode
@@ -20,6 +22,9 @@ models:
     columns:
       - name: event_id
         description: Unique identifier for each event on the website
+        tests:
+          - not_null
+          - unique
       - name: session_id
         description: identifier for a complete session by a website user
       - name: user_id
@@ -40,6 +45,9 @@ models:
     columns:
       - name: order_id
         description: Unique identifier of the order
+        tests:
+          - not_null
+          - unique
       - name: user_id
         description: ID of a user
       - name: promo_id
@@ -102,6 +110,9 @@ models:
     columns:
       - name: user_id
         description: Unique identifier of a particular user 
+        tests:
+          - not_null
+          - unique
       - name: first_name
         description: The first name of a user
       - name: last_name
