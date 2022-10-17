@@ -42,3 +42,16 @@ fact_orders seemed important to include, as it contains order specific informati
 dim_users combines the users table with the addresses table. This seems logical--it will save a join in the future, and the data natually feels like it belongs together.
 
 fact_user_orders contains order information at the user level. This table would make it easy to answer questions like "what has the average user spent?" and "how many people have ordered more than X times?".
+
+- Logic behind tests
+Most basic testing should be on primary keys to ensure there are no duplicates. Especially when joining certain models together, using tests ensures that the joins were successful and the data is as you would expect it. And including a not_null test ensures that every row has a primary key.
+
+- Ensuring tests pass
+Alerting the team when a test fails is required to make sure these are running smoothly. The test should always be intentional, and should always be taken seriously when they don't pass. If a model doesn't pass a test, it is something that should be communicated throughout the data teams, and stakeholders should be notified that the data they are using may not be reliable until the problem is identified and fixed.
+
+- Snapshot
+> Looks like 3 different orders. changed:
+    select 
+        * 
+    from dev_db.dbt_mrohwetter.orders_snapshot
+    where dbt_valid_to is not null
